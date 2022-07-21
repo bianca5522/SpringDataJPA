@@ -1,9 +1,10 @@
 package com.jparelations.school.teacher;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jparelations.school.subject.Subject;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Teacher {
@@ -11,8 +12,11 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+
+    @JsonIgnore
+    @OneToMany
+    private Set<Subject> subjects;
 
     public Long getId() {
         return id;
